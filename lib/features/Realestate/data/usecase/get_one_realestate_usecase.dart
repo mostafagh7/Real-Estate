@@ -1,4 +1,3 @@
-import 'package:real_estate/features/Realestate/data/models/realestate.dart';
 import 'package:real_estate/features/Realestate/data/repoistory/realestate_repo.dart';
 
 import '../../../../core/params/base_params.dart';

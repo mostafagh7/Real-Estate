@@ -57,7 +57,6 @@ class _PaginationListState<Model> extends State<PaginationList<Model>> {
     if (widget.onCubitCreated != null) {
       widget.onCubitCreated!(bloc!);
     }
-    // context.read<PaginationBloc>().add(BasePaginationEvent());
     bloc!.add(BasePaginationEvent());
     super.initState();
   }
@@ -69,7 +68,7 @@ class _PaginationListState<Model> extends State<PaginationList<Model>> {
 
   _buildConsumer() {
     return BlocProvider(
-      create: (context) =>bloc!..add(BasePaginationEvent()),
+      create: (context) => bloc!..add(BasePaginationEvent()),
       child: BlocConsumer<PaginationBloc<Model>, PaginationState>(
           bloc: bloc,
           listener: (context, state) {
@@ -129,11 +128,11 @@ class _PaginationListState<Model> extends State<PaginationList<Model>> {
       header: const MaterialClassicHeader(),
       controller: _refreshController,
       onRefresh: () async {
-        context.read<PaginationBloc>().add(BasePaginationEvent());
+        bloc!.add(BasePaginationEvent());
         if (widget.onLoading != null) widget.onLoading!();
       },
       onLoading: () async {
-        context.read<PaginationBloc>().add(BasePaginationEvent(loadMore: true));
+        bloc!.add(BasePaginationEvent(loadMore: true));
       },
       footer: customFooter,
       child: child,

@@ -9,7 +9,6 @@ import '../data/models/details.dart';
 import '../data/repoistory/realestate_repo.dart';
 import '../data/usecase/get_one_realestate_usecase.dart';
 import '../widget/card_details.dart';
-import '../widget/dropdown_shimmer.dart';
 import '../widget/empty_block.dart';
 
 class RealestateDetails extends StatefulWidget {

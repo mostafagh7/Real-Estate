@@ -5,7 +5,6 @@ class RealestateDetailsModel extends BaseModel {
   String? id;
   String? createdAt;
   String? updatedAt;
-  // UserModel? user;
   DefaultModel? country;
   DefaultModel? city;
   DefaultModel? district;
@@ -63,20 +62,17 @@ class RealestateDetailsModel extends BaseModel {
   String? facingDirection;
   String? residencyType;
   bool? forGender;
-  String? buildingComplexGroup;
   String? blockNumber;
   String? buildingNumber;
   int? floorNumber;
   int? flatNumber;
   int? noOfUnits;
   int? similarRealestatesCount;
-  // List<SimilarRealestateModel>? similarRealestates;
 
   RealestateDetailsModel({
     this.id,
     this.createdAt,
     this.updatedAt,
-    // this.user,
     this.country,
     this.city,
     this.district,
@@ -134,7 +130,6 @@ class RealestateDetailsModel extends BaseModel {
     this.facingDirection,
     this.residencyType,
     this.forGender,
-    this.buildingComplexGroup,
     this.blockNumber,
     this.buildingNumber,
     this.floorNumber,
@@ -205,7 +200,6 @@ class RealestateDetailsModel extends BaseModel {
     facingDirection: json["facingDirection"],
     residencyType: json["residencyType"],
     forGender: json["forGender"],
-    buildingComplexGroup: json["buildingComplexGroup"],
     blockNumber: json["blockNumber"],
     buildingNumber: json["buildingNumber"],
     floorNumber: json["floorNumber"],
