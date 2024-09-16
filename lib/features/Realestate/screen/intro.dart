@@ -12,9 +12,6 @@ class IntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final screenWidth = size.width;
-    final screenHeight = size.height;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -24,12 +21,12 @@ class IntroScreen extends StatelessWidget {
             Stack(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.w),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(screenWidth * 0.1),
+                    borderRadius: BorderRadius.circular(20.w),
                     child: SizedBox(
-                      height: screenHeight * 0.6,
-                      width: screenWidth,
+                      height: 0.6.sh, 
+                      width: 1.sw,
                       child: Image.asset(
                         "assets/images/intro.png",
                         fit: BoxFit.cover,
@@ -38,15 +35,15 @@ class IntroScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: screenHeight * 0.01,
-                  right: screenWidth * 0.3,
+                  top: 0.01.sh, 
+                  right: 0.3.sw, 
                   child: Padding(
-                    padding: EdgeInsets.all(screenWidth * 0.02),
+                    padding: EdgeInsets.all(16.w),
                     child: Row(
                       children: [
                         SizedBox(
-                          height: screenHeight * 0.14,
-                          width: screenWidth * 0.09,
+                          height: 0.14.sh,
+                          width: 0.09.sw, 
                           child: Image.asset("assets/images/logo.png"),
                         ),
                         ShaderMask(
@@ -58,7 +55,7 @@ class IntroScreen extends StatelessWidget {
                           child: Text(
                             "Real Estate",
                             style: TextStyle(
-                              fontSize: screenWidth * 0.04,
+                              fontSize: 0.04.sw, 
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
@@ -70,40 +67,42 @@ class IntroScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20.h),
             Center(
               child: Text(
                 "Discover dream house from smartphone",
                 style: TextStyle(
-                  fontSize: screenWidth * 0.06,
+                  fontSize: 0.06.sw, 
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: 10.h),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.w),
               child: Center(
                 child: Text(
                   "The No. 1 App for searching and finding the most suitable house with you.",
                   style: TextStyle(
-                    fontSize: screenWidth * 0.04,
+                    fontSize: 0.04.sw, 
                     fontWeight: FontWeight.normal,
                   ),
                   textAlign: TextAlign.center,
                 ),
               ),
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: 10.h),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(20.w),
               child: CustomButton(
-                h: screenHeight * 0.06,
-                radius: screenWidth * 0.02,
+                h: 0.06.sh,
+                radius: 20.w,
                 text: "Continue",
                 textStyle: TextStyle(
-                    fontSize: screenWidth * 0.04, color: AppColors.white),
+                  fontSize: 0.04.sw, 
+                  color: AppColors.white,
+                ),
                 onPressed: () {
                   Navigation.pushAndRemoveUntil(const RealestateScreen());
                   prefs!.setString("isFirst", "yes");
@@ -112,12 +111,12 @@ class IntroScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.w),
               child: Center(
                 child: Text(
                   "Developed by Mustafa Ghazlan",
                   style: TextStyle(
-                    fontSize: screenWidth * 0.03,
+                    fontSize: 0.03.sw, 
                     fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.center,

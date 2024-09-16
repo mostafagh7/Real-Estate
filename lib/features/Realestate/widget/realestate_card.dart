@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate/core/constant/app_colors/app_colors.dart';
 import '../../../core/ui/widgets/cached_image.dart';
 import '../../../core/utils/Navigation/navigation.dart';
@@ -15,13 +16,9 @@ class CardWid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final screenWidth = size.width;
-    final screenHeight = size.height;
-
     return InkWell(
       onTap: () => Navigation.push(RealestateDetails(
-        realestateModel: realEstateModel,
+        realestateId: realEstateModel.id ?? "",
       )),
       child: Card(
         color: AppColors.whiteF0,
@@ -30,10 +27,10 @@ class CardWid extends StatelessWidget {
             Stack(
               children: [
                 SizedBox(
-                  width: screenWidth,
-                  height: screenHeight * 0.25,
+                  width: 1.sw,
+                  height: 0.25.sh, 
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(screenWidth * 0.02),
+                    borderRadius: BorderRadius.circular(12.w),
                     child: CachedImage(
                       imageUrl: realEstateModel.image,
                       fit: BoxFit.cover,
@@ -41,11 +38,11 @@ class CardWid extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(screenWidth * 0.02),
+                  padding: EdgeInsets.all(12.w),
                   child: Card(
                     color: AppColors.white,
                     child: Padding(
-                      padding: EdgeInsets.all(screenWidth * 0.02),
+                      padding: EdgeInsets.all(12.w),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -54,7 +51,7 @@ class CardWid extends StatelessWidget {
                                 ? "IQD ${realEstateModel.price!.toStringAsFixed(3)}"
                                 : "Price",
                             style: TextStyle(
-                              fontSize: screenWidth * 0.03,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -62,7 +59,7 @@ class CardWid extends StatelessWidget {
                             "/month",
                             style: TextStyle(
                               color: AppColors.grey3B,
-                              fontSize: screenWidth * 0.03,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -72,19 +69,19 @@ class CardWid extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: screenHeight * 0.01,
-                  right: screenWidth * 0.01,
+                  top: 8.h, 
+                  right: 8.w, 
                   child: Row(
                     children: [
                       const Icon(
                         Icons.visibility,
                         color: AppColors.grey3B,
                       ),
-                      SizedBox(width: screenWidth * 0.01),
+                      SizedBox(width: 8.w), 
                       Text(
                         '${realEstateModel.views}',
                         style: TextStyle(
-                          fontSize: screenWidth * 0.04,
+                          fontSize: 16.sp, 
                           color: AppColors.grey3B,
                         ),
                       ),
@@ -100,11 +97,11 @@ class CardWid extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(screenWidth * 0.02),
+                      padding: EdgeInsets.all(12.w),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: SizedBox(
-                          width: screenWidth * 0.6,
+                          width: 0.6.sw,
                           child: RichText(
                             overflow: TextOverflow.ellipsis,
                             text: TextSpan(
@@ -112,7 +109,7 @@ class CardWid extends StatelessWidget {
                               style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
-                                fontSize: screenWidth * 0.05,
+                                fontSize: 18.sp,
                               ),
                             ),
                           ),
@@ -121,8 +118,8 @@ class CardWid extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                        bottom: screenHeight * 0.01,
-                        left: screenWidth * 0.02,
+                        bottom: 8.h, 
+                        left: 12.w,
                       ),
                       child: Align(
                         alignment: Alignment.centerLeft,
@@ -131,7 +128,7 @@ class CardWid extends StatelessWidget {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.grey[400],
-                            fontSize: screenWidth * 0.04,
+                            fontSize: 16.sp, 
                           ),
                         ),
                       ),
@@ -141,10 +138,10 @@ class CardWid extends StatelessWidget {
                 Stack(
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(screenWidth * 0.02),
+                      padding: EdgeInsets.all(12.w),
                       child: Container(
-                        height: screenHeight * 0.05,
-                        width: screenHeight * 0.05,
+                        height: 40.h,
+                        width: 40.h,
                         decoration: const BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.circle,
@@ -157,7 +154,7 @@ class CardWid extends StatelessWidget {
                           onPressed: () {},
                           icon: Icon(
                             Icons.arrow_forward,
-                            size: screenWidth * 0.05,
+                            size: 24.sp,
                           ),
                         ),
                       ),

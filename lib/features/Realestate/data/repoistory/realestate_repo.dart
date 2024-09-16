@@ -8,19 +8,20 @@ import '../../../../core/dio/http_method.dart';
 import '../../../../core/repository/core_repository.dart';
 import '../../../../core/results/result.dart';
 import '../models/city.dart';
+import '../models/details.dart';
 import '../models/realestate.dart';
 import '../usecase/all_realestate_usecase.dart';
 import '../usecase/get_one_realestate_usecase.dart';
 
 class RealestateRepository extends CoreRepository {
-  Future<Result<RealestateModel>> getOneChicken(
+  Future<Result<RealestateDetailsModel>> getOneRealestate(
       {required GetOneRealestateParams params}) async {
-    final result = await RemoteDataSource.request<RealestateModel>(
+    final result = await RemoteDataSource.request<RealestateDetailsModel>(
         withAuthentication: false,
-        url: '$realestateURI/${params.chickenId}',
+        url: '$realestateURI/${params.realestateId}',
         method: HttpMethod.GET,
         responseStr: 'GetOneRealestateResponse',
-        converter: (json) => RealestateModel.fromJson(json['data']));
+        converter: (json) => RealestateDetailsModel.fromJson(json["payload"]));
     return call(result: result);
   }
 

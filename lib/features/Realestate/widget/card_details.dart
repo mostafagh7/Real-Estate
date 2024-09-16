@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CardDetails extends StatelessWidget {
   final String text;
   final String text2;
   final IconData? icon;
+
   const CardDetails({
     super.key,
     required this.text,
@@ -13,13 +15,10 @@ class CardDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final screenWidth = size.width;
-    final screenHeight = size.height;
     return Expanded(
       child: Container(
-        margin: EdgeInsets.all(screenWidth * 0.01),
-        height: screenHeight * 0.06,
+        margin: EdgeInsets.all(8.w), 
+        height: 36.h, 
         child: Card(
           color: Colors.grey[300],
           child: Row(
@@ -27,23 +26,23 @@ class CardDetails extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                size: screenWidth * 0.1,
+                size: 24.sp, 
               ),
               Row(
                 children: [
                   Text(
                     text,
                     style: TextStyle(
-                        fontSize: screenWidth * 0.04,
+                        fontSize: 16.sp, 
                         fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    width: screenWidth * 0.01,
+                    width: 8.w, 
                   ),
                   Text(
                     text2,
                     style: TextStyle(
-                        fontSize: screenWidth * 0.04,
+                        fontSize: 16.sp, 
                         fontWeight: FontWeight.bold),
                   ),
                 ],

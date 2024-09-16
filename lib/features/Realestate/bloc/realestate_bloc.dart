@@ -20,6 +20,7 @@ class RealestateBloc extends Bloc<RealestateEvent, RealestateState> {
   List<String>? cityList;
   List<String>? categoryList;
   RealestateBloc() : super(RealestateInitial()) {
+    
     on<SetInitialCityEvent>((event, emit) async {
       city = event.cities;
       cityList = event.cities.map((city) => jsonEncode(city.toJson())).toList();

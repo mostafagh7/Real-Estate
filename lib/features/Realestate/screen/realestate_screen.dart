@@ -1,4 +1,3 @@
-
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +10,6 @@ import 'package:real_estate/features/Realestate/data/models/realestate.dart';
 import 'package:real_estate/features/Realestate/data/usecase/all_category_usecase.dart';
 import '../../../core/boilerplate/get_model/widgets/get_model.dart';
 import '../../../core/boilerplate/pagination/widgets/pagination_list.dart';
-import '../../../core/constant/app_padding/app_padding.dart';
 import '../../../core/ui/widgets/back_widget.dart';
 import '../bloc/realestate_bloc.dart';
 import '../bloc/realestate_event.dart';
@@ -30,8 +28,6 @@ class RealestateScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: AppColors.whiteF1,
       body: BlocBuilder<RealestateBloc, RealestateState>(
@@ -41,15 +37,15 @@ class RealestateScreen extends StatelessWidget {
           context.read<RealestateBloc>().add(GetStoredCityEvent());
           context.read<RealestateBloc>().add(GetStoredCategoryEvent());
           return Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppPaddingSize.padding_16,
+            padding: EdgeInsets.symmetric(
+              horizontal: 16.w, 
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 SizedBox(height: 70.h),
                 const BackWidget(title: "Real Estate"),
-                const SizedBox(height: AppPaddingSize.padding_20),
+                SizedBox(height: 20.h), 
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -57,9 +53,9 @@ class RealestateScreen extends StatelessWidget {
                       current: isSell,
                       first: false,
                       second: true,
-                      spacing: screenWidth * 0.1,
-                      height: screenHeight * 0.05,
-                      borderWidth: screenWidth * 0.001,
+                      spacing: 20.w, 
+                      height: 50.h, 
+                      borderWidth: 1.w,
                       onChanged: (value) {
                         context.read<RealestateBloc>().add(
                             ChangeFilterOfferTypeEvent(
@@ -77,29 +73,21 @@ class RealestateScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      iconBuilder: (value) => value
-                          ? Icon(Icons.sell, size: screenWidth * 0.06)
-                          : Icon(Icons.real_estate_agent_rounded,
-                              size: screenWidth * 0.06),
-                      textBuilder: (value) => value
-                          ? Center(
-                              child: Text(
-                                "SELL",
-                                style: TextStyle(
-                                    fontSize: screenWidth * 0.04,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            )
-                          : Center(
-                              child: Text(
-                                "RENT",
-                                style: TextStyle(
-                                    fontSize: screenWidth * 0.04,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
+                      iconBuilder: (value) => Icon(
+                        value ? Icons.sell : Icons.real_estate_agent_rounded,
+                        size: 24.sp,
+                      ),
+                      textBuilder: (value) => Center(
+                        child: Text(
+                          value ? "SELL" : "RENT",
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: IntrinsicWidth(
@@ -153,25 +141,20 @@ class RealestateScreen extends StatelessWidget {
                                       items: context
                                               .read<RealestateBloc>()
                                               .city
-                                              ?.map<
-                                                      DropdownMenuItem<
-                                                          CityModel>>(
+                                              ?.map<DropdownMenuItem<CityModel>>(
                                                   (CityModel city) {
                                             return DropdownMenuItem<CityModel>(
                                               value: city,
-                                              child:
-                                                  Text(city.names?.enUS ?? ''),
+                                              child: Text(city.names?.enUS ?? ''),
                                             );
-                                          }).toList() ??
-                                          [],
+                                          }).toList() ?? [],
                                       hint: "City",
                                       allValue: CityModel(
                                           id: "",
                                           names: NamesModel(enUS: 'All')),
                                     ),
                                   ),
-                            context.read<RealestateBloc>().category?.isEmpty ??
-                                    true
+                            context.read<RealestateBloc>().category?.isEmpty ?? true
                                 ? Expanded(
                                     child: GetModel<List<CategoryModel>>(
                                       useCaseCallBack: () {
@@ -180,9 +163,8 @@ class RealestateScreen extends StatelessWidget {
                                             .call(params: AllCategoryParams());
                                       },
                                       onSuccess: (model) {
-                                        context
-                                            .read<RealestateBloc>()
-                                            .add(SetInitialCategoryEvent(model));
+                                        context.read<RealestateBloc>().add(
+                                            SetInitialCategoryEvent(model));
                                       },
                                       onError: (val) {
                                         debugPrint(val);
@@ -207,18 +189,14 @@ class RealestateScreen extends StatelessWidget {
                                       items: context
                                               .read<RealestateBloc>()
                                               .category
-                                              ?.map<
-                                                      DropdownMenuItem<
-                                                          CategoryModel>>(
+                                              ?.map<DropdownMenuItem<CategoryModel>>(
                                                   (CategoryModel category) {
-                                            return DropdownMenuItem<
-                                                CategoryModel>(
+                                            return DropdownMenuItem<CategoryModel>(
                                               value: category,
                                               child: Text(
                                                   category.names?.enUS ?? ''),
                                             );
-                                          }).toList() ??
-                                          [],
+                                          }).toList() ?? [],
                                       onChanged: (CategoryModel? newCategory) {
                                         if (newCategory != null &&
                                             newCategory !=
@@ -228,12 +206,12 @@ class RealestateScreen extends StatelessWidget {
                                           context
                                               .read<RealestateBloc>()
                                               .subCategoryId = newCategory.id;
-                                          context
-                                              .read<RealestateBloc>()
-                                              .add(ChangeSelectedCategoryEvent(newCategory));
-                                          context
-                                              .read<RealestateBloc>()
-                                              .add(ChangeFilterCategoryTypeEvent(newCategory.id!));
+                                          context.read<RealestateBloc>().add(
+                                              ChangeSelectedCategoryEvent(
+                                                  newCategory));
+                                          context.read<RealestateBloc>().add(
+                                              ChangeFilterCategoryTypeEvent(
+                                                  newCategory.id!));
                                         }
                                       },
                                     ),
@@ -244,37 +222,29 @@ class RealestateScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: AppPaddingSize.padding_16),
+                SizedBox(height: 16.h), 
                 Expanded(
                   child: PaginationList<RealestateModel>(
-                    loadingWidget: const SingleChildScrollView(
+                    loadingWidget: SingleChildScrollView(
                       child: Column(
                         children: [
-                          GFShimmer(
+                          const GFShimmer(
                             child: EmptyBlock(),
                           ),
-                          SizedBox(
-                            height: AppPaddingSize.padding_16,
-                          ),
-                          GFShimmer(
+                          SizedBox(height: 16.h), 
+                          const GFShimmer(
                             child: EmptyBlock(),
                           ),
-                          SizedBox(
-                            height: AppPaddingSize.padding_16,
-                          ),
-                          GFShimmer(
+                          SizedBox(height: 16.h), 
+                          const GFShimmer(
                             child: EmptyBlock(),
                           ),
-                          SizedBox(
-                            height: AppPaddingSize.padding_16,
-                          ),
-                          GFShimmer(
+                          SizedBox(height: 16.h), 
+                          const GFShimmer(
                             child: EmptyBlock(),
                           ),
-                          SizedBox(
-                            height: AppPaddingSize.padding_16,
-                          ),
-                          GFShimmer(
+                          SizedBox(height: 16.h), 
+                          const GFShimmer(
                             child: EmptyBlock(),
                           ),
                         ],
@@ -288,20 +258,10 @@ class RealestateScreen extends StatelessWidget {
                         params: AllRealestateParams(
                           request: data,
                           offerType: context.read<RealestateBloc>().offerType,
-                          cityId: context
-                                      .read<RealestateBloc>()
-                                      .selectedCity
-                                      ?.names!
-                                      .enUS ==
-                                  "All"
+                          cityId: context.read<RealestateBloc>().selectedCity?.names?.enUS == "All"
                               ? null
                               : context.read<RealestateBloc>().cityId,
-                          subCategoryId: context
-                                      .read<RealestateBloc>()
-                                      .selectedCategory
-                                      ?.names!
-                                      .enUS ==
-                                  "All"
+                          subCategoryId: context.read<RealestateBloc>().selectedCategory?.names?.enUS == "All"
                               ? null
                               : context.read<RealestateBloc>().subCategoryId,
                         ),
@@ -314,15 +274,14 @@ class RealestateScreen extends StatelessWidget {
                         );
                       },
                       itemCount: list.length,
-                      padding: const EdgeInsets.only(
-                        bottom: AppPaddingSize.padding_100,
-                        top: AppPaddingSize.padding_16,
+                      padding: EdgeInsets.only(
+                        bottom: 100.h, 
+                        top: 16.h, 
                       ),
                       shrinkWrap: true,
                       physics: const BouncingScrollPhysics(),
                       separatorBuilder: (BuildContext context, int index) {
-                        return const SizedBox(
-                            height: AppPaddingSize.padding_16);
+                        return SizedBox(height: 16.h); 
                       },
                     ),
                   ),

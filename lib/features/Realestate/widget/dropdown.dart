@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:real_estate/core/constant/app_colors/app_colors.dart';
 
 class DropDownWidget<Model> extends StatelessWidget {
@@ -14,41 +15,38 @@ class DropDownWidget<Model> extends StatelessWidget {
     required this.onChanged,
     required this.items,
     required this.hint,
-    required this.allValue, 
+    required this.allValue,
   });
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-
     return Container(
-      height: screenHeight * 0.08,
+      height: 64.h, 
       margin: EdgeInsets.symmetric(
-        horizontal: screenWidth * 0.02,
-        vertical: screenHeight * 0.01,
+        horizontal: 16.w, 
+        vertical: 8.h, 
       ),
       child: IntrinsicWidth(
         child: DropdownButtonHideUnderline(
           child: DropdownButton<Model>(
-            itemHeight: screenHeight * 0.08,
+            itemHeight: 64.h, 
             isExpanded: true,
             style: TextStyle(
-              fontSize: screenWidth * 0.04,
+              fontSize: 16.sp, 
               color: AppColors.black,
               fontWeight: FontWeight.bold,
             ),
             hint: Text(
               hint,
-              style: TextStyle(fontSize: screenWidth * 0.04),
+              style: TextStyle(fontSize: 16.sp), 
             ),
-            padding: EdgeInsets.all(screenWidth * 0.03),
+            padding: EdgeInsets.all(12.w), 
             value: value,
             onChanged: onChanged,
             items: [
               DropdownMenuItem<Model>(
-                value: allValue, 
-                child: const Text('All'), 
+                value: allValue,
+                child: const Text('All'),
               ),
               ...items!.map((item) {
                 return DropdownMenuItem<Model>(
@@ -56,8 +54,7 @@ class DropDownWidget<Model> extends StatelessWidget {
                   child: FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Container(
-                      margin:
-                          EdgeInsets.symmetric(vertical: screenHeight * 0.01),
+                      margin: EdgeInsets.symmetric(vertical: 8.h), 
                       child: item.child,
                     ),
                   ),
