@@ -6,7 +6,6 @@ import '../repoistory/realestate_repo.dart';
 
 class AllCityParams extends BaseParams {
   AllCityParams();
-
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
 
